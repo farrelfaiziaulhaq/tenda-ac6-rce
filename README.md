@@ -25,7 +25,7 @@ emulator/
   deploy_patches.sh     Tanam patch ke image.raw
   start_qemu.sh         Boot guest terisolasi (init=/firmadyne/console)
   reboot_guest.sh       Reboot guest & tunggu httpd siap
-patches/                Binary hasil patch/exploit (httpd_rce, cfm_mib_dgram, libCfm, rc.g, console_elf)
+patches/                Binary hasil patch/exploit (httpd_rce, cfm_mib_dgram, libCfm, libapmib_patched, rc.g, console_elf, mib.sanitized.cfg)
 src/                    Sumber asm patch + build.sh
 firmware/               bin/httpd (orisinal, untuk analisis), libCfm, config contoh (diredaksi)
 bn/                     Plugin Binary Ninja + daftar alamat/fungsi
@@ -73,10 +73,13 @@ Detail: `exploit/README.md`. Ringkas:
 ## Catatan penting — celah asli vs harness emulasi
 
 - **Celah asli** (pada firmware): overflow `strcpy` dan backdoor `user:user`.
-- **Harness emulasi** (tambahan repo ini): patch kecil ("cave"/hook epilog) pada `bin/httpd` agar
-  pembajakan `$ra → system()` dapat didemonstrasikan secara andal di QEMU (pemanggilan CFM di emulasi
-  sempat merusak `req`). Ini **bukan** bagian dari kerentanan asli. Di perangkat asli, RCE penuh
-  memerlukan kontrol `$a0` (ROP / ret2stack), karena non-PIE dan NX off.
+- **Harness emulasi** (tambahan repo ini):
+  - patch hook epilog / "cave" pada `bin/httpd` agar demo `$ra → system()` andal di QEMU;
+  - `lib/libapmib.so` di-patch (`apmib_init`/`apmib_init_HW` → return 1) agar httpd melewati
+    pembacaan config dari flash (yang tidak ada di emulator), dan `/cfg/mib.cfg` (disanitasi)
+    disediakan sebagai config.
+  Ini **bukan** bagian dari kerentanan asli. Di perangkat asli, RCE penuh memerlukan kontrol `$a0`
+  (ROP / ret2stack), karena non-PIE dan NX off.
 
 ## Troubleshooting
 

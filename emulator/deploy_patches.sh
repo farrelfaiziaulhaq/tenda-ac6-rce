@@ -7,7 +7,8 @@ REPO=/repo
 IMG="$FA/scratch/1/image.raw"
 MNT=/tmp/imgpatch
 
-for f in patches/httpd_rce patches/cfm_mib_dgram patches/libCfm_original.so patches/rc.g patches/console_elf; do
+for f in patches/httpd_rce patches/cfm_mib_dgram patches/libCfm_original.so \
+         patches/rc.g patches/console_elf patches/libapmib_patched.so patches/mib.sanitized.cfg; do
     [ -f "$REPO/$f" ] || { echo "[!] hilang: $REPO/$f"; exit 1; }
 done
 
@@ -21,12 +22,15 @@ mount -o loop,rw,offset=1048576 "$IMG" "$MNT"
 cp "$REPO/patches/httpd_rce"          "$MNT/bin/httpd"
 cp "$REPO/patches/cfm_mib_dgram"      "$MNT/cfm_mib"
 cp "$REPO/patches/libCfm_original.so" "$MNT/lib/libCfm.so"
+cp "$REPO/patches/libapmib_patched.so" "$MNT/lib/libapmib.so"
 cp "$REPO/patches/rc.g"               "$MNT/rc.g"
 cp "$REPO/patches/console_elf"        "$MNT/firmadyne/console"
-chmod 755 "$MNT/bin/httpd" "$MNT/cfm_mib" "$MNT/rc.g" "$MNT/firmadyne/console"
+mkdir -p "$MNT/cfg"
+cp "$REPO/patches/mib.sanitized.cfg"  "$MNT/cfg/mib.cfg"
+chmod 755 "$MNT/bin/httpd" "$MNT/cfm_mib" "$MNT/rc.g" "$MNT/firmadyne/console" "$MNT/lib/libapmib.so"
 
 echo "[*] md5:"
-md5sum "$MNT/bin/httpd" "$MNT/cfm_mib" "$MNT/lib/libCfm.so" "$MNT/rc.g" "$MNT/firmadyne/console"
+md5sum "$MNT/bin/httpd" "$MNT/cfm_mib" "$MNT/lib/libCfm.so" "$MNT/lib/libapmib.so" "$MNT/rc.g" "$MNT/firmadyne/console"
 
 umount "$MNT"
 echo "[+] Patch tertanam."
