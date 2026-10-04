@@ -32,6 +32,7 @@ bn/                     Plugin Binary Ninja + daftar alamat/fungsi
 docs/                   FINDINGS.md, screenshots/
 book/                   Buku & Laporan final (docx + pdf)
 exploit/                exploit.py, buat_payload.py, shell_demo.py, request Burp
+vid/                    Demo video RCE shellcode (rce-shellcode-tenda-ac6-v2.mp4)
 FirmAE/                 FirmAE (sumber); binaries/kernel diunduh otomatis saat bootstrap
 ```
 
@@ -70,6 +71,14 @@ Buka `firmware/httpd` → view **High Level IL**. Lihat `bn/BN-ADDRESSES.md`. Fu
 Detail: `exploit/README.md`. Ringkas:
 - offset `748` (saved `$ra` di `fp+892`), alamat target `system = 0x005047c0`.
 - payload: `b'A'*748 + p32(0x005047c0)[:3]` (3 byte; NUL ditambah `strcpy`).
+
+## Demo Video
+
+Demo RCE shellcode → root shell (emulator terisolasi):
+
+<video src="vid/rce-shellcode-tenda-ac6-v2.mp4" controls="controls" width="100%"></video>
+
+File: [`vid/rce-shellcode-tenda-ac6-v2.mp4`](vid/rce-shellcode-tenda-ac6-v2.mp4)
 
 ## Catatan penting — celah asli vs harness emulasi
 
