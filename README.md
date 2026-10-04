@@ -93,11 +93,6 @@ Detail: `exploit/README.md`. Ringkas:
 
 *▶ Klik gambar untuk memutar — file: [`vid/rce-shellcode-tenda-ac6-v2.mp4`](vid/rce-shellcode-tenda-ac6-v2.mp4)*
 
-### 2. Auth bypass (`user:user`)
-
-[![▶ Tonton demo auth bypass](docs/screenshots/thumb-tenda-bypass.jpg)](vid/tenda-bypass.mp4)
-
-*▶ Klik gambar untuk memutar — file: [`vid/tenda-bypass.mp4`](vid/tenda-bypass.mp4)*
 
 ## Catatan penting — celah asli vs harness emulasi
 
