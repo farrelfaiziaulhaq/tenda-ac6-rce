@@ -1,0 +1,5 @@
+# The fcore image builds from the repo root (see docker-init.sh) only so the
+# Dockerfile can COPY requirements.txt. Exclude everything except what it needs.
+*
+!core
+!requirements.txt

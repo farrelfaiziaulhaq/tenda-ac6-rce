@@ -1,0 +1,11 @@
+*.o
+*.armel
+*.mipseb
+*.mipsel
+binaries/
+images/
+scratch/
+*.tar.gz
+*binwalk*
+result.txt
+chromedriver
