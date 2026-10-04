@@ -1,5 +1,11 @@
 # Tenda AC6 v2 — Authentication Bypass & RCE (Reproducible Lab)
 
+<p align="center">
+  <img src="docs/screenshots/tenda-ac6-v2-router.jpg" width="350" alt="Router Tenda AC6 v2" />
+</p>
+
+<p align="center"><em>Target: router Tenda AC6 v2 (`V15.03.06.51_multi`, Realtek RTL8197F).</em></p>
+
 Reproduksi terisolasi dari dua kerentanan firmware **Tenda AC6 v2**
 (`V15.03.06.51_multi`, Realtek RTL8197F):
 
@@ -29,10 +35,12 @@ patches/                Binary hasil patch/exploit (httpd_rce, cfm_mib_dgram, li
 src/                    Sumber asm patch + build.sh
 firmware/               bin/httpd (orisinal, untuk analisis), libCfm, config contoh (diredaksi)
 bn/                     Plugin Binary Ninja + daftar alamat/fungsi
-docs/                   FINDINGS.md, screenshots/
+docs/                   FINDINGS.md, screenshots/ (foto router + bukti exploit)
 book/                   Buku & Laporan final (docx + pdf)
 exploit/                exploit.py, buat_payload.py, shell_demo.py, request Burp
-vid/                    Demo video RCE shellcode (rce-shellcode-tenda-ac6-v2.mp4)
+vid/                    Demo video:
+                          - rce-shellcode-tenda-ac6-v2.mp4 (RCE shellcode → root shell)
+                          - tenda-bypass.mp4 (auth bypass `user:user`)
 FirmAE/                 FirmAE (sumber); binaries/kernel diunduh otomatis saat bootstrap
 ```
 
@@ -74,11 +82,18 @@ Detail: `exploit/README.md`. Ringkas:
 
 ## Demo Video
 
-Demo RCE shellcode → root shell (emulator terisolasi):
+| No | Demo | File |
+|----|------|------|
+| 1 | **RCE shellcode → root shell** (emulator terisolasi, `form_fast_setting_wifi_set` overflow, `$ra → system()`) | [`vid/rce-shellcode-tenda-ac6-v2.mp4`](vid/rce-shellcode-tenda-ac6-v2.mp4) |
+| 2 | **Auth bypass `user:user`** (login pakai kredensial default `sys.baseusername`/`sys.baseuserpass`) | [`vid/tenda-bypass.mp4`](vid/tenda-bypass.mp4) |
+
+### 1. RCE shellcode → root shell
 
 <video src="vid/rce-shellcode-tenda-ac6-v2.mp4" controls="controls" width="100%"></video>
 
-File: [`vid/rce-shellcode-tenda-ac6-v2.mp4`](vid/rce-shellcode-tenda-ac6-v2.mp4)
+### 2. Auth bypass (`user:user`)
+
+<video src="vid/tenda-bypass.mp4" controls="controls" width="100%"></video>
 
 ## Catatan penting — celah asli vs harness emulasi
 
