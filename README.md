@@ -30,6 +30,7 @@ src/                    Sumber asm patch + build.sh
 firmware/               bin/httpd (orisinal, untuk analisis), libCfm, config contoh (diredaksi)
 bn/                     Plugin Binary Ninja + daftar alamat/fungsi
 docs/                   FINDINGS.md, screenshots/
+book/                   Buku & Laporan final (docx + pdf)
 exploit/                exploit.py, buat_payload.py, shell_demo.py, request Burp
 FirmAE/                 FirmAE (sumber); binaries/kernel diunduh otomatis saat bootstrap
 ```
