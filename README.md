@@ -89,11 +89,15 @@ Detail: `exploit/README.md`. Ringkas:
 
 ### 1. RCE shellcode → root shell
 
-<video src="vid/rce-shellcode-tenda-ac6-v2.mp4" controls="controls" width="100%"></video>
+[![▶ Tonton demo RCE shellcode](docs/screenshots/thumb-rce-shellcode.jpg)](vid/rce-shellcode-tenda-ac6-v2.mp4)
+
+*▶ Klik gambar untuk memutar — file: [`vid/rce-shellcode-tenda-ac6-v2.mp4`](vid/rce-shellcode-tenda-ac6-v2.mp4)*
 
 ### 2. Auth bypass (`user:user`)
 
-<video src="vid/tenda-bypass.mp4" controls="controls" width="100%"></video>
+[![▶ Tonton demo auth bypass](docs/screenshots/thumb-tenda-bypass.jpg)](vid/tenda-bypass.mp4)
+
+*▶ Klik gambar untuk memutar — file: [`vid/tenda-bypass.mp4`](vid/tenda-bypass.mp4)*
 
 ## Catatan penting — celah asli vs harness emulasi
 
